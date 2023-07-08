@@ -55,9 +55,10 @@ export default {
                                 <div class="text-left font-medium text-gray-950">{{ item.name }}</div>
                             </td>
                             <td class="py-3 px-8 whitespace-nowrap flex justify-start items-center gap-2">
-                                <a href="#soon"
-                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
-                                        name="eye"></ion-icon></a>
+                                <RouterLink :to="{ name: 'CarTypeDetail', params: { carTypeId: item.id } }"
+                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
+                                    <ion-icon name="eye"></ion-icon>
+                                </RouterLink>
                                 <a href="#soon"
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
                                         name="create"></ion-icon></a>

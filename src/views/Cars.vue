@@ -31,12 +31,13 @@ export default {
         TableLoadingSpinner
     },
 };
+
 </script>
 
 <template>
     <div class="w-full h-full flex justify-center items-center my-6">
         <div class="w-2/3">
-            <Header :loaded="loaded" />
+            <Header />
             <div class="w-full bg-gray-50 mt-6 rounded-md px-2">
                 <table class="table-auto w-full">
                     <thead class="text-sm font-semibold capitalize text-gray-400">
@@ -68,9 +69,9 @@ export default {
                                 <div class="text-left font-medium text-gray-500">{{ item.type.name }}</div>
                             </td>
                             <td class="py-3 px-8 whitespace-nowrap flex justify-start items-center gap-2">
-                                <a href="#soon"
-                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
-                                        name="eye"></ion-icon></a>
+                                <RouterLink :to="{ name: 'CarDetail', params: { carId: item.id } }"
+                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
+                                    <ion-icon name="eye"></ion-icon></RouterLink>
                                 <a href="#soon"
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
                                         name="create"></ion-icon></a>
