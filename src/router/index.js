@@ -1,22 +1,22 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../views/Home.vue";
 import CarBrands from "../views/CarBrands.vue";
 import CarTypes from "../views/CarTypes.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'Cars',
+    path: "/",
+    name: "Cars",
     component: Home,
   },
   {
-    path: '/car-brands',
-    name: 'CarBrands',
+    path: "/car-brands",
+    name: "CarBrands",
     component: CarBrands,
   },
   {
-    path: '/car-type',
-    name: 'CarTypes',
+    path: "/car-types",
+    name: "CarTypes",
     component: CarTypes,
   },
 ];
