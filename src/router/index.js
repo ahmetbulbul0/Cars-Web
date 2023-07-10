@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Cars from "../views/Cars.vue";
 import CarDetail from "../views/CarDetail.vue";
 import CarBrands from "../views/CarBrands.vue";
+import NewCarBrand from "../views/NewCarBrand.vue"
 import CarBrandDetail from "../views/CarBrandDetail.vue";
 import CarTypes from "../views/CarTypes.vue";
 import CarTypeDetail from "../views/CarTypeDetail.vue";
@@ -33,6 +34,11 @@ const routes = [
     path: "/car-brands",
     name: "CarBrands",
     component: CarBrands,
+  },
+  {
+    path: "/new-car-brand",
+    name: "NewCarBrand",
+    component: NewCarBrand,
   },
   {
     path: "/car-brand/:carBrandId",
