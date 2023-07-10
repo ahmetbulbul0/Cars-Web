@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import store from '../store';
 import Header from './components/Header.vue';
 import TableLoadingSpinner from "./components/TableLoadingSpinner.vue";
 
@@ -7,7 +8,8 @@ export default {
     data() {
         return {
             items: [],
-            fetchedData: false
+            fetchedData: false,
+            deletedMessage: store.state.deletedMessage
         };
     },
     mounted() {
@@ -38,7 +40,16 @@ export default {
             <Header />
 
             <div class="w-full mt-4 flex justify-end gap-4 rounded-md px-2">
-                <RouterLink :to="{ name: 'NewCarBrand' }" class="rounded-md px-3 py-2 text-sm font-medium text-white bg-green-800">Create</RouterLink>
+                <div class="w-full px-4 py-2 bg-red-600 text-white rounded-md" v-if="deletedMessage != null">
+                    <div class="w-full flex justify-start items-center gap-2">
+                        <span class="text-xl flex justify-center items-center">
+                            <ion-icon name="trash"></ion-icon>
+                        </span>
+                        <p class="text-sm">{{ deletedMessage }}</p>
+                    </div>
+                </div>
+                <RouterLink :to="{ name: 'NewCarBrand' }"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-white bg-green-800">Create</RouterLink>
             </div>
 
             <div class="w-full bg-gray-50 mt-4 rounded-md px-2">
@@ -68,9 +79,10 @@ export default {
                                 <a href="#soon"
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
                                         name="create"></ion-icon></a>
-                                <a href="#soon"
-                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
-                                        name="trash"></ion-icon></a>
+                                <RouterLink :to="{ name: 'CarBrandDelete', params: { carBrandId: item.id } }"
+                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
+                                    <ion-icon name="trash"></ion-icon>
+                                </RouterLink>
                             </td>
                         </tr>
                     </tbody>

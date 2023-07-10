@@ -16,8 +16,8 @@ export default {
     },
     methods: {
         fetchData() {
-            const carId = this.$route.params.carId;
-            axios.get('http://127.0.0.1:8000/api/car/' + carId)
+            const carBrandId = this.$route.params.carBrandId;
+            axios.get('http://127.0.0.1:8000/api/car-brand/' + carBrandId)
                 .then(response => {
                     this.item = response.data.item;
                     this.fetchedData = true
@@ -27,17 +27,17 @@ export default {
                 });
         },
         deleteItem() {
-            axios.delete('http://127.0.0.1:8000/api/car/' + this.item.id)
+            axios.delete('http://127.0.0.1:8000/api/car-brand/' + this.item.id)
                 .then(response => {
-                    store.commit("setCarDeletedMessage", this.item.name);
-                    this.$router.push({ name: 'Cars' });
+                store.commit("setCarBrandDeletedMessage", this.item.name);
+                    this.$router.push({ name: 'CarBrands' });
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
         cancel() {
-            this.$router.push({ name: 'Cars' });
+            this.$router.push({ name: 'CarBrands' });
         },
     },
     components: {
@@ -64,7 +64,7 @@ export default {
                         <span>Are You Sure?</span>
                     </div>
                     <div class="w-full flex justify-center items-center text-sm font-medium text-gray-600">
-                        <span>if you confirm, deleting "{{ item.name }}" named car</span>
+                        <span>if you confirm, deleting "{{ item.name }}" named car brand</span>
                     </div>
                     <div class="w-full text-sm font-medium flex flex-col items-center gap-y-2 mt-2">
                         <button type="submit"
