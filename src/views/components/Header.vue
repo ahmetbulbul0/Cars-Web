@@ -14,6 +14,9 @@ export default {
             case "Cars":
                 this.title = "Cars"
                 break;
+                case "NewCar":
+                this.title = "New Car"
+                break;
             case "CarDetail":
                 this.title = "Car Detail"
                 break;

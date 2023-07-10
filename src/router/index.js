@@ -5,6 +5,7 @@ import CarBrands from "../views/CarBrands.vue";
 import CarBrandDetail from "../views/CarBrandDetail.vue";
 import CarTypes from "../views/CarTypes.vue";
 import CarTypeDetail from "../views/CarTypeDetail.vue";
+import NewCar from "../views/NewCar.vue";
 import Home from "../views/Home.vue";
 
 const routes = [
@@ -19,6 +20,11 @@ const routes = [
     component: Cars,
   },
   {
+    path: "/new-car",
+    name: "NewCar",
+    component: NewCar,
+  },
+  {
     path: "/car/:carId",
     name: "CarDetail",
     component: CarDetail,
@@ -29,7 +35,7 @@ const routes = [
     component: CarBrands,
   },
   {
-    path: "/car-types/:carBrandId",
+    path: "/car-brand/:carBrandId",
     name: "CarBrandDetail",
     component: CarBrandDetail,
   },
@@ -39,7 +45,7 @@ const routes = [
     component: CarTypes,
   },
   {
-    path: "/car-types/:carTypeId",
+    path: "/car-type/:carTypeId",
     name: "CarTypeDetail",
     component: CarTypeDetail,
   },
