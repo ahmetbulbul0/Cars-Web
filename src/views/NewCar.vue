@@ -48,8 +48,6 @@ export default {
 
             if (carName != null && carType != 0 && carBrand != 0) {
 
-                console.log("carName", carName, "carType", carType, "carBrand", carBrand);
-
                 axios.post('http://127.0.0.1:8000/api/car/store', {
                     name: carName,
                     type: carType,
