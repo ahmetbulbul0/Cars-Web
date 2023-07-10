@@ -1,14 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
+
+import Home from "../views/Home.vue";
+
 import Cars from "../views/Cars.vue";
+import NewCar from "../views/NewCar.vue";
 import CarDetail from "../views/CarDetail.vue";
+import CarDelete from "../views/CarDelete.vue";
+
 import CarBrands from "../views/CarBrands.vue";
 import NewCarBrand from "../views/NewCarBrand.vue";
 import CarBrandDetail from "../views/CarBrandDetail.vue";
+
 import CarTypes from "../views/CarTypes.vue";
 import NewCarType from "../views/NewCarType.vue";
 import CarTypeDetail from "../views/CarTypeDetail.vue";
-import NewCar from "../views/NewCar.vue";
-import Home from "../views/Home.vue";
+
 
 const routes = [
   {
@@ -16,6 +22,7 @@ const routes = [
     name: "Home",
     component: Home,
   },
+
   {
     path: "/cars",
     name: "Cars",
@@ -32,6 +39,12 @@ const routes = [
     component: CarDetail,
   },
   {
+    path: "/delete-car/:carId",
+    name: "CarDelete",
+    component: CarDelete,
+  },
+
+  {
     path: "/car-brands",
     name: "CarBrands",
     component: CarBrands,
@@ -46,6 +59,7 @@ const routes = [
     name: "CarBrandDetail",
     component: CarBrandDetail,
   },
+
   {
     path: "/car-types",
     name: "CarTypes",

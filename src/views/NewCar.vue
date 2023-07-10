@@ -149,8 +149,7 @@ export default {
                         </div>
                     </div>
                     <div class="w-full flex justify-start items-center gap-4">
-                        <button type="submit" class="w-full px-4 py-2 rounded-sm bg-gray-200 text-gray-700 font-medium"
-                            @click="create()">Create</button>
+                        <button type="submit" class="w-full px-4 py-2 rounded-sm bg-gray-200 text-gray-700 font-medium" @click="create()">Create</button>
                     </div>
                 </div>
             </div>
