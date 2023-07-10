@@ -36,7 +36,12 @@ export default {
     <div class="w-full h-full flex justify-center items-center my-6">
         <div class="w-2/3">
             <Header />
-            <div class="w-full bg-gray-50 mt-6 rounded-md px-2">
+
+            <div class="w-full mt-4 flex justify-end gap-4 rounded-md px-2">
+                <RouterLink :to="{ name: 'NewCarType' }" class="rounded-md px-3 py-2 text-sm font-medium text-white bg-green-800">Create</RouterLink>
+            </div>
+
+            <div class="w-full bg-gray-50 mt-4 rounded-md px-2">
                 <table class="table-auto w-full">
                     <thead class="text-sm font-semibold capitalize text-gray-400">
                         <tr>

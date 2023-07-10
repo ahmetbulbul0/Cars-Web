@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import Cars from "../views/Cars.vue";
 import CarDetail from "../views/CarDetail.vue";
 import CarBrands from "../views/CarBrands.vue";
-import NewCarBrand from "../views/NewCarBrand.vue"
+import NewCarBrand from "../views/NewCarBrand.vue";
 import CarBrandDetail from "../views/CarBrandDetail.vue";
 import CarTypes from "../views/CarTypes.vue";
+import NewCarType from "../views/NewCarType.vue";
 import CarTypeDetail from "../views/CarTypeDetail.vue";
 import NewCar from "../views/NewCar.vue";
 import Home from "../views/Home.vue";
@@ -49,6 +50,11 @@ const routes = [
     path: "/car-types",
     name: "CarTypes",
     component: CarTypes,
+  },
+  {
+    path: "/new-car-type",
+    name: "NewCarType",
+    component: NewCarType,
   },
   {
     path: "/car-type/:carTypeId",

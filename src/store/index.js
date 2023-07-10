@@ -13,6 +13,9 @@ const store = createStore({
     setCarBrandCreatedMessage(state) {
       state.createdMessage = "Created New Car Brand, Here Created Car Brand Details";
     },
+    setCarTypeCreatedMessage(state) {
+      state.createdMessage = "Created New Car Type, Here Created Car Type Details";
+    },
   },
 });
 

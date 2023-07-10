@@ -1,13 +1,15 @@
 <script>
 
 import axios from 'axios';
+import store from '../store';
 import Header from './components/Header.vue';
 
 export default {
     data() {
         return {
             item: null,
-            fetchedData: false
+            fetchedData: false,
+            createdMessage: store.state.createdMessage
         };
     },
     mounted() {
@@ -39,6 +41,16 @@ export default {
             <div class="w-full flex justify-center mt-6" v-if="fetchedData == false">
                 <div class="w-1/2 bg-gray-50 rounded-md p-4 flex justify-center items-center h-24">
                     <img class="h-12 w-12" src="../assets/gif/1488.gif" alt="">
+                </div>
+            </div>
+            <div class="w-full flex justify-center mt-6" v-if="createdMessage != null">
+                <div class="w-1/2 px-4 py-2 bg-green-400 text-white rounded-md">
+                    <div class="w-full flex justify-start items-center gap-2">
+                        <span class="text-xl flex justify-center items-center">
+                            <ion-icon name="checkmark"></ion-icon>
+                        </span>
+                        <p class="text-sm">{{ createdMessage }}</p>
+                    </div>
                 </div>
             </div>
             <div class="w-full flex justify-center mt-6" v-if="item != null">
