@@ -91,9 +91,11 @@ export default {
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
                                     <ion-icon name="eye"></ion-icon>
                                 </RouterLink>
-                                <a href="#soon"
-                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800"><ion-icon
-                                        name="create"></ion-icon></a>
+                                        
+                                <RouterLink :to="{ name: 'EditCar', params: { carId: item.id } }"
+                                    class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
+                                    <ion-icon name="create"></ion-icon>
+                                </RouterLink>
 
                                 <RouterLink :to="{ name: 'CarDelete', params: { carId: item.id } }"
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">

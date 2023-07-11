@@ -4,12 +4,16 @@ const store = createStore({
   state() {
     return {
       createdMessage: null,
+      updatedMessage: null,
       deletedMessage: null
     };
   },
   mutations: {
     setCarCreatedMessage(state) {
       state.createdMessage = "Created New Car, Here Created Car Details";
+    },
+    setCarUpdatedMessage(state) {
+      state.updatedMessage = "Updated Car, Here Updated Car Details";
     },
     setCarDeletedMessage(state, carName) {
       state.deletedMessage = `Deleted "${carName}" Named Car`;
