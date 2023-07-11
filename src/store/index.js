@@ -21,6 +21,9 @@ const store = createStore({
     setCarBrandCreatedMessage(state) {
       state.createdMessage = "Created New Car Brand, Here Created Car Brand Details";
     },
+    setCarBrandUpdatedMessage(state) {
+      state.updatedMessage = "Updated Car Brand, Here Updated Car Brand Details";
+    },
     setCarBrandDeletedMessage(state, carBrandName) {
       state.deletedMessage = `Deleted "${carBrandName}" Named Car Brand`;
     },
