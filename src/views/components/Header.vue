@@ -20,6 +20,9 @@ export default {
             case "CarDetail":
                 this.title = "Car Detail"
                 break;
+            case "EditCar":
+                this.title = "Edit Car";
+                break;
             case "CarDelete":
                 this.title = "Car Delete"
                 break;
@@ -32,6 +35,9 @@ export default {
             case "CarBrandDetail":
                 this.title = "Car Brand Detail"
                 break;
+            case "EditCarBrand":
+                this.title = "Edit Car Brand";
+                break;
             case "CarBrandDelete":
                 this.title = "Car Brand Delete"
                 break;
@@ -43,6 +49,9 @@ export default {
                 break;
             case "CarTypeDetail":
                 this.title = "Car Type Detail"
+                break;
+            case "EditCarType":
+                this.title = "Edit Car Type";
                 break;
             case "CarTypeDelete":
                 this.title = "Car Type Delete"
