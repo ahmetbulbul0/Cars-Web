@@ -30,6 +30,9 @@ const store = createStore({
     setCarTypeCreatedMessage(state) {
       state.createdMessage = "Created New Car Type, Here Created Car Type Details";
     },
+    setCarTypeUpdatedMessage(state) {
+      state.updatedMessage = "Updated Car Type, Here Updated Car Type Details";
+    },
     setCarTypeDeletedMessage(state, carTypeName) {
       state.deletedMessage = `Deleted "${carTypeName}" Named Car Type`;
     },

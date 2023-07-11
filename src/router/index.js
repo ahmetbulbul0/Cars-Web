@@ -18,6 +18,8 @@ import CarTypes from "../views/CarTypes.vue";
 import NewCarType from "../views/NewCarType.vue";
 import CarTypeDetail from "../views/CarTypeDetail.vue";
 import CarTypeDelete from "../views/CarTypeDelete.vue";
+import EditCarType from "../views/EditCarType.vue";
+
 
 const routes = [
   {
@@ -92,6 +94,11 @@ const routes = [
     path: "/car-type/:carTypeId",
     name: "CarTypeDetail",
     component: CarTypeDetail,
+  },
+  {
+    path: "/edit-car-type/:carTypeId",
+    name: "EditCarType",
+    component: EditCarType,
   },
   {
     path: "/delete-car-type/:carTypeId",

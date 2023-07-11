@@ -73,7 +73,7 @@ export default {
                         <button type="submit"
                             class="w-2/3 px-4 py-2 rounded-r-sm bg-gray-200 text-gray-500 font-medium hover:bg-gray-300 hover:text-gray-600"
                             @click="cancel()">Cancel, Don't Delete</button>
-                    </div>
+            </div>
                 </div>
         </div>
     </div>

@@ -9,7 +9,8 @@ export default {
         return {
             item: null,
             fetchedData: false,
-            createdMessage: store.state.createdMessage
+            updatedMessage: store.state.updatedMessage,
+            createdMessage: store.state.createdMessage,
         };
     },
     mounted() {
@@ -50,6 +51,16 @@ export default {
                             <ion-icon name="checkmark"></ion-icon>
                         </span>
                         <p class="text-sm">{{ createdMessage }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex justify-center mt-6" v-if="updatedMessage != null">
+                <div class="w-1/2 px-4 py-2 bg-green-400 text-white rounded-md">
+                    <div class="w-full flex justify-start items-center gap-2">
+                        <span class="text-xl flex justify-center items-center">
+                            <ion-icon name="checkmark"></ion-icon>
+                        </span>
+                        <p class="text-sm">{{ updatedMessage }}</p>
                     </div>
                 </div>
             </div>
