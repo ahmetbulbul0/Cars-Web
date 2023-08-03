@@ -9,6 +9,12 @@
 - **Js**
 - **Vue**
 
+## Dependencies
+* Axios
+* Vue-Router
+* Vuex
+* IonIcons
+
 ## Project Setup Process
 
 ### Install npm (for npm packages)
