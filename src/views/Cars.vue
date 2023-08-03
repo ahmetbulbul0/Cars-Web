@@ -4,13 +4,15 @@ import axios from 'axios';
 import store from '../store';
 import Header from './components/Header.vue';
 import TableLoadingSpinner from "./components/TableLoadingSpinner.vue";
+import Pagination from './components/Pagination.vue';
 
 export default {
     data() {
         return {
             items: [],
             fetchedData: false,
-            deletedMessage: store.state.deletedMessage
+            deletedMessage: store.state.deletedMessage,
+            pagination: null,
         };
     },
     mounted() {
@@ -18,19 +20,35 @@ export default {
     },
     methods: {
         fetchData() {
-            axios.get('http://127.0.0.1:8000/api/car')
-                .then(response => {
-                    this.items = response.data.data;
-                    this.fetchedData = true
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            axios.get('http://127.0.0.1:8000/api/car', {
+                params: {
+                    paginate: true,
+                    limit: 10,
+                    page: this.$route.params.page ? this.$route.params.page : 1
+                }
+            }).then(response => {
+                this.items = response.data.data
+                this.fetchedData = true
+                this.pagination = response.data.pagination
+            }).catch(error => {
+                console.error(error);
+            });
         },
+    },
+    watch: {
+        '$route.params.page'(newPage, oldPage) {
+            this.items = [];
+            this.fetchedData = false;
+            this.pagination = null;
+            if (newPage !== oldPage) {
+                this.fetchData();
+            }
+        }
     },
     components: {
         Header,
-        TableLoadingSpinner
+        TableLoadingSpinner,
+        Pagination
     },
 };
 
@@ -91,12 +109,10 @@ export default {
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
                                     <ion-icon name="eye"></ion-icon>
                                 </RouterLink>
-                                        
                                 <RouterLink :to="{ name: 'EditCar', params: { carId: item.id } }"
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
                                     <ion-icon name="create"></ion-icon>
                                 </RouterLink>
-
                                 <RouterLink :to="{ name: 'CarDelete', params: { carId: item.id } }"
                                     class="flex justify-center items-center text-gray-500 text-xl hover:text-gray-800">
                                     <ion-icon name="trash"></ion-icon>
@@ -106,5 +122,8 @@ export default {
                     </tbody>
                 </table>
             </div>
+
+            <Pagination :baseLink="'Cars'" :pagination="pagination" v-if="pagination != null"/>
         </div>
-</div></template>
+    </div>
+</template>

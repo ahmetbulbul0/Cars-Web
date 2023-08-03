@@ -29,7 +29,7 @@ export default {
         deleteItem() {
             axios.delete('http://127.0.0.1:8000/api/car-brand/' + this.item.id)
                 .then(response => {
-                store.commit("setCarBrandDeletedMessage", this.item.name);
+                    store.commit("setCarBrandDeletedMessage", this.item.name);
                     this.$router.push({ name: 'CarBrands' });
                 })
                 .catch(error => {
@@ -55,9 +55,6 @@ export default {
                     <img class="h-12 w-12" src="../assets/gif/1488.gif" alt="">
                 </div>
             </div>
-
-
-
             <div class="w-full flex justify-center mt-6" v-if="item != null">
                 <div class="w-1/3 bg-gray-50 rounded-md p-4 flex flex-col gap-y-4">
                     <div class="w-full flex justify-center items-center text-xl font-semibold text-gray-700">
@@ -73,8 +70,9 @@ export default {
                         <button type="submit"
                             class="w-2/3 px-4 py-2 rounded-r-sm bg-gray-200 text-gray-500 font-medium hover:bg-gray-300 hover:text-gray-600"
                             @click="cancel()">Cancel, Don't Delete</button>
-            </div>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
-</div></template>q
+</template>q

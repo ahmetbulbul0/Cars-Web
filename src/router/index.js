@@ -29,7 +29,7 @@ const routes = [
   },
 
   {
-    path: "/cars",
+    path: "/cars/:page?",
     name: "Cars",
     component: Cars,
   },
@@ -55,7 +55,7 @@ const routes = [
   },
 
   {
-    path: "/car-brands",
+    path: "/car-brands/:page?",
     name: "CarBrands",
     component: CarBrands,
   },
@@ -81,7 +81,7 @@ const routes = [
   },
 
   {
-    path: "/car-types",
+    path: "/car-types/:page?",
     name: "CarTypes",
     component: CarTypes,
   },
