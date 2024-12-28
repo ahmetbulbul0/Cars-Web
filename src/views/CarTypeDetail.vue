@@ -36,8 +36,8 @@ export default {
 </script>
 
 <template>
-    <div class="w-full h-full flex justify-center items-center my-6">
-        <div class="w-2/3">
+    <div class="w-full h-full flex justify-center items-center my-6 px-6">
+        <div class="w-full max-w-7xl">
             <Header />
             <div class="w-full flex justify-center mt-6" v-if="fetchedData == false">
                 <div class="w-1/2 bg-gray-50 rounded-md p-4 flex justify-center items-center h-24">
@@ -69,6 +69,11 @@ export default {
                     <div class="w-full flex justify-start gap-4">
                         <label class="font-bold text-gray-600">Name:</label>
                         <span class="font-medium text-gray-700 break-all hyphens-auto">{{ item.name }}</span>
+                    </div>
+
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Description:</label>
+                        <span class="font-medium text-gray-700 break-all hyphens-auto">{{ item.description ?? "-" }}</span>
                     </div>
                 </div>
             </div>

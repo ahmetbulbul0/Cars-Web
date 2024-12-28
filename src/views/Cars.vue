@@ -55,8 +55,8 @@ export default {
 </script>
 
 <template>
-    <div class="w-full h-full flex justify-center items-center my-6">
-        <div class="w-2/3">
+    <div class="w-full h-full flex justify-center items-center my-6 px-6">
+        <div class="w-full max-w-7xl">
             <Header />
 
             <div class="w-full mt-4 flex justify-end gap-4 rounded-md px-2">
@@ -96,7 +96,7 @@ export default {
                         <TableLoadingSpinner :fetchedData="fetchedData" />
                         <tr v-for="item in items" :key="item.id">
                             <td class="py-3 px-8 whitespace-nowrap">
-                                <div class="text-left font-medium text-gray-950">{{ item.name }}</div>
+                                <div class="text-left font-medium text-gray-950">{{ item.modelName }}</div>
                             </td>
                             <td class="py-3 px-8 whitespace-nowrap">
                                 <div class="text-left font-medium text-gray-800">{{ item.brand.name }}</div>

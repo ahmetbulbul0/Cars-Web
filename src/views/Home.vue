@@ -73,12 +73,12 @@ export default {
 </script>
 
 <template>
-    <div class="w-full h-full flex justify-center items-center my-6">
-        <div class="w-2/3">
+    <div class="w-full h-full flex justify-center items-center my-6 px-6">
+        <div class="w-full max-w-7xl">
             <Header />
 
-            <div class="w-full flex justify-between items-start">
-                <div class="w-auto bg-gray-50 mt-4 rounded-md px-2">
+            <div class="w-full grid grid-cols-12 gap-4">
+                <div class="col-span-12 bg-gray-50 mt-4 rounded-md px-2">
                     <h5 class="px-4 py-2 text-base font-semibold text-gray-700 bg-white mt-2 rounded-t-md">Cars</h5>
                     <table class="table-auto w-full">
                         <thead class="text-sm font-semibold capitalize text-gray-400">
@@ -101,13 +101,13 @@ export default {
                             <TableLoadingSpinner :fetchedData="fetchedCars" />
                             <tr v-for="item in cars" :key="item.id">
                                 <td class="py-3 px-8 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-950">{{ item.name }}</div>
+                                    <div class="text-left font-medium text-gray-950">{{ item.modelName }}</div>
                                 </td>
                                 <td class="py-3 px-8 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-800">{{ item.brand.name }}</div>
+                                    <div class="text-left font-medium text-gray-800">{{ item.type.name }}</div>
                                 </td>
                                 <td class="py-3 px-8 whitespace-nowrap">
-                                    <div class="text-left font-medium text-gray-500">{{ item.type.name }}</div>
+                                    <div class="text-left font-medium text-gray-500">{{ item.brand.name }}</div>
                                 </td>
                                 <td class="py-3 px-8 whitespace-nowrap flex justify-start items-center gap-2">
                                     <RouterLink :to="{ name: 'CarDetail', params: { carId: item.id } }"
@@ -134,7 +134,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="w-auto bg-gray-50 mt-4 rounded-md px-2">
+                <div class="col-span-6 bg-gray-50 mt-4 rounded-md px-2">
                     <h5 class="px-4 py-2 text-base font-semibold text-gray-700 bg-white mt-2 rounded-t-md">Car Types
                     </h5>
                     <table class="table-auto w-full">
@@ -179,7 +179,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="w-auto bg-gray-50 mt-4 rounded-md px-2">
+                <div class="col-span-6 bg-gray-50 mt-4 rounded-md px-2">
                     <h5 class="px-4 py-2 text-base font-semibold text-gray-700 bg-white mt-2 rounded-t-md">Car Brands
                     </h5>
                     <table class="table-auto w-full">

@@ -36,8 +36,8 @@ export default {
 </script>
 
 <template>
-    <div class="w-full h-full flex justify-center items-center my-6">
-        <div class="w-2/3">
+    <div class="w-full h-full flex justify-center items-center my-6 px-6">
+        <div class="w-full max-w-7xl">
             <Header />
             <div class="w-full flex justify-center mt-6" v-if="fetchedData == false">
                 <div class="w-1/2 bg-gray-50 rounded-md p-4 flex justify-center items-center h-24">
@@ -67,8 +67,8 @@ export default {
             <div class="w-full flex justify-center mt-6" v-if="item != null">
                 <div class="w-1/2 bg-gray-50 rounded-md p-4 flex flex-col gap-y-4">
                     <div class="w-full flex justify-start gap-4">
-                        <label class="font-bold text-gray-600">Name:</label>
-                        <span class="font-medium text-gray-700 break-all hyphens-auto">{{ item.name }}</span>
+                        <label class="font-bold text-gray-600">Model Name:</label>
+                        <span class="font-medium text-gray-700 break-all hyphens-auto">{{ item.modelName }}</span>
                     </div>
                     <div class="w-full flex justify-start gap-4">
                         <label class="font-bold text-gray-600">Type:</label>
@@ -78,8 +78,48 @@ export default {
                         <label class="font-bold text-gray-600">Brand:</label>
                         <span class="font-medium text-gray-700 break-all hyphens-auto">{{ item.brand.name }}</span>
                     </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Production Year:</label>
+                        <span class="font-medium text-gray-700">{{ item.productionYear }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Color:</label>
+                        <span class="font-medium text-gray-700">{{ item.color }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Engine Type:</label>
+                        <span class="font-medium text-gray-700">{{ item.engineType }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Horsepower:</label>
+                        <span class="font-medium text-gray-700">{{ item.horsepower }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Torque:</label>
+                        <span class="font-medium text-gray-700">{{ item.torque }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Transmission:</label>
+                        <span class="font-medium text-gray-700">{{ item.transmission }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Fuel Consumption:</label>
+                        <span class="font-medium text-gray-700">{{ item.fuelConsumption }} L/100km</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Price:</label>
+                        <span class="font-medium text-gray-700">${{ item.price }}</span>
+                    </div>
+                    <div class="w-full flex justify-start gap-4">
+                        <label class="font-bold text-gray-600">Features:</label>
+                        <span class="font-medium text-gray-700">
+                            <ul class="list-disc ml-5">
+                                <li v-for="feature in item.features" :key="feature.id">{{ feature.name }}</li>
+                            </ul>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</template>q
+</template>

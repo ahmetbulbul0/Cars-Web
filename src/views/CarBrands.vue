@@ -54,8 +54,8 @@ export default {
 </script>
 
 <template>
-    <div class="w-full h-full flex justify-center items-center my-6">
-        <div class="w-2/3">
+    <div class="w-full h-full flex justify-center items-center my-6 px-6">
+        <div class="w-full max-w-7xl">
             <Header />
 
             <div class="w-full mt-4 flex justify-end gap-4 rounded-md px-2">

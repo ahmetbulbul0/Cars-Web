@@ -78,8 +78,8 @@ export default {
 </script>
 
 <template>
-    <div class="w-full h-full flex justify-center items-center my-6">
-        <div class="w-2/3">
+    <div class="w-full h-full flex justify-center items-center my-6 px-6">
+        <div class="w-full max-w-7xl">
             <Header />
             <div class="w-full flex justify-center mt-6" v-if="fetchedData == false">
                 <div class="w-1/2 bg-gray-50 rounded-md p-4 flex justify-center items-center h-24">
