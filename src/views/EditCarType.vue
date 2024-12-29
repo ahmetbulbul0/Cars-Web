@@ -10,6 +10,7 @@ export default {
         return {
             fetchedData: false,
             name: ref(null),
+            description: ref(null),
         };
     },
     mounted() {
@@ -21,6 +22,7 @@ export default {
             axios.get(`http://127.0.0.1:8000/api/car-type/${carTypeId}`)
                 .then(response => {
                     this.name = response.data.item.name;
+                    this.description = response.data.item.description;
                     this.fetchedData = true;
                 })
                 .catch(error => {
@@ -30,45 +32,70 @@ export default {
         update() {
             this.resetFormInputErrors();
 
-            var carTypeName = this.name;
+            const carTypeName = this.name;
+            const carTypeDescription = this.description;
 
             if (carTypeName) {
                 const carTypeId = this.$route.params.carTypeId;
                 axios.patch(`http://127.0.0.1:8000/api/car-type/${carTypeId}`, {
                     name: carTypeName,
+                    description: carTypeDescription,
                 }).then(response => {
                     store.commit("setCarTypeUpdatedMessage");
                     this.$router.push({ name: 'CarTypeDetail', params: { carTypeId: response.data.updated_old.id } });
                 }).catch(error => {
-                    var errors = error.response.data.errors;
+                    const errors = error.response.data.errors;
                     if (errors.name) {
-                        document.querySelector("[name='name']").classList.remove("border-gray-300");
-                        document.querySelector("[name='name']").classList.add("border-red-700");
-
-                        let box = document.querySelector("[name='name']").parentNode.parentNode;
-                        var errorsContent = `<div class="w-full flex justify-end items-right flex-col gap-y-2 mt-2 text-sm text-right text-red-700" id="nameErrorBox">`;
-
-                        errors.name.forEach(nameError => {
-                            errorsContent = errorsContent + `<span>${nameError}</span>`;
-                        });
-
-                        errorsContent = errorsContent + "</div>";
-                        box.innerHTML = box.innerHTML + errorsContent;
+                        this.handleFieldError("name", errors.name);
+                    }
+                    if (errors.description) {
+                        this.handleFieldError("description", errors.description);
                     }
                 });
             }
 
             if (!carTypeName) {
-                document.querySelector("[name='name']").classList.remove("border-gray-300");
-                document.querySelector("[name='name']").classList.add("border-red-700");
+                this.markFieldAsError("name");
             }
-
         },
         resetFormInputErrors() {
-            document.querySelector("#nameErrorBox") ? document.querySelector("#nameErrorBox").remove() : null;
-            document.querySelector("[name='name']").classList.add("border-gray-300");
-            document.querySelector("[name='name']").classList.remove("border-red-700");
-        }
+            ["name", "description"].forEach(field => {
+                const errorBox = document.querySelector(`#${field}ErrorBox`);
+                if (errorBox) errorBox.remove();
+
+                const inputElement = document.querySelector(`[name='${field}']`);
+                if (inputElement) {
+                    inputElement.classList.add("border-gray-300");
+                    inputElement.classList.remove("border-red-700");
+                }
+            });
+        },
+        handleFieldError(field, errorMessages) {
+            const inputElement = document.querySelector(`[name='${field}']`);
+            if (inputElement) {
+                inputElement.classList.remove("border-gray-300");
+                inputElement.classList.add("border-red-700");
+
+                const box = inputElement.parentNode.parentNode;
+                const errorBoxId = `${field}ErrorBox`;
+
+                if (!document.querySelector(`#${errorBoxId}`)) {
+                    let errorsContent = `<div class="w-full flex justify-end items-right flex-col gap-y-2 mt-2 text-sm text-right text-red-700" id="${errorBoxId}">`;
+                    errorMessages.forEach(errorMessage => {
+                        errorsContent += `<span>${errorMessage}</span>`;
+                    });
+                    errorsContent += "</div>";
+                    box.innerHTML += errorsContent;
+                }
+            }
+        },
+        markFieldAsError(field) {
+            const inputElement = document.querySelector(`[name='${field}']`);
+            if (inputElement) {
+                inputElement.classList.remove("border-gray-300");
+                inputElement.classList.add("border-red-700");
+            }
+        },
     },
     components: {
         Header
@@ -93,7 +120,15 @@ export default {
                             <label class="font-bold text-gray-600 w-1/6">Name:</label>
                             <input name="name" v-model="name" type="text"
                                 class="w-5/6 px-4 py-2 rounded-sm outline-none border border-gray-300"
-                                placeholder="Enter Something...">
+                                placeholder="Enter Name...">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="w-full flex justify-start items-center gap-4">
+                            <label class="font-bold text-gray-600 w-1/6">Description:</label>
+                            <textarea name="description" v-model="description"
+                                class="w-5/6 px-4 py-2 rounded-sm outline-none border border-gray-300"
+                                placeholder="Enter Description..." rows="3"></textarea>
                         </div>
                     </div>
                     <div class="w-full flex justify-start items-center gap-4">
