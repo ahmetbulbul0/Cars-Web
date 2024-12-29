@@ -109,7 +109,7 @@ export default {
                 </table>
             </div>
 
-            <Pagination :baseLink="'CarBrands'" :pagination="pagination" v-if="pagination != null" />
+            <Pagination :baseLink="'CarTypes'" :pagination="pagination" v-if="pagination != null" />
         </div>
     </div>
 </template>
