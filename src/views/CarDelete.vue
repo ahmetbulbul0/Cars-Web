@@ -1,5 +1,4 @@
 <script>
-
 import axios from 'axios';
 import store from '../store';
 import Header from './components/Header.vue';
@@ -9,39 +8,40 @@ export default {
         return {
             item: null,
             fetchedData: false,
+            errorMessage: null, // Hata mesajı için ek alan
         };
     },
     mounted() {
         this.fetchData();
     },
     methods: {
-        fetchData() {
+        async fetchData() {
             const carId = this.$route.params.carId;
-            axios.get('http://127.0.0.1:8000/api/car/' + carId)
-                .then(response => {
-                    this.item = response.data.item;
-                    this.fetchedData = true
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/car/${carId}`);
+                this.item = response.data.item;
+                this.fetchedData = true;
+            } catch (error) {
+                console.error("Error fetching car data:", error);
+                this.errorMessage = "An error occurred while fetching the car details.";
+            }
         },
-        deleteItem() {
-            axios.delete('http://127.0.0.1:8000/api/car/' + this.item.id)
-                .then(response => {
-                    store.commit("setCarDeletedMessage", this.item.name);
-                    this.$router.push({ name: 'Cars' });
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+        async deleteItem() {
+            try {
+                await axios.delete(`http://127.0.0.1:8000/api/car/${this.item.id}`);
+                store.commit("setCarDeletedMessage", this.item.modelName);
+                this.$router.push({ name: 'Cars' });
+            } catch (error) {
+                console.error("Error deleting car:", error);
+                this.errorMessage = "An error occurred while deleting the car.";
+            }
         },
         cancel() {
             this.$router.push({ name: 'Cars' });
         },
     },
     components: {
-        Header
+        Header,
     },
 };
 </script>
@@ -50,21 +50,30 @@ export default {
     <div class="w-full h-full flex justify-center items-center my-6 px-6">
         <div class="w-full max-w-7xl">
             <Header />
-            <div class="w-full flex justify-center mt-6" v-if="fetchedData == false">
+            <div class="w-full flex justify-center mt-6" v-if="!fetchedData && !errorMessage">
                 <div class="w-1/2 bg-gray-50 rounded-md p-4 flex justify-center items-center h-24">
-                    <img class="h-12 w-12" src="../assets/gif/1488.gif" alt="">
+                    <img class="h-12 w-12" src="../assets/gif/1488.gif" alt="Loading...">
                 </div>
             </div>
 
+            <div class="w-full flex justify-center mt-6" v-if="errorMessage">
+                <div class="w-1/2 px-4 py-2 bg-red-400 text-white rounded-md">
+                    <div class="w-full flex justify-start items-center gap-2">
+                        <span class="text-xl flex justify-center items-center">
+                            <ion-icon name="warning-outline"></ion-icon>
+                        </span>
+                        <p class="text-sm">{{ errorMessage }}</p>
+                    </div>
+                </div>
+            </div>
 
-
-            <div class="w-full flex justify-center mt-6" v-if="item != null">
+            <div class="w-full flex justify-center mt-6" v-if="item && fetchedData">
                 <div class="w-1/3 bg-gray-50 rounded-md p-4 flex flex-col gap-y-4">
                     <div class="w-full flex justify-center items-center text-xl font-semibold text-gray-700">
                         <span>Are You Sure?</span>
                     </div>
                     <div class="w-full flex justify-center items-center text-sm font-medium text-gray-600">
-                        <span>if you confirm, deleting "{{ item.name }}" named car</span>
+                        <span>If you confirm, deleting "{{ item.modelName }}" named car.</span>
                     </div>
                     <div class="w-full text-sm font-medium flex flex-col items-center gap-y-2 mt-2">
                         <button type="submit"
@@ -75,6 +84,7 @@ export default {
                             @click="cancel()">Cancel, Don't Delete</button>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-</div></template>q
+</template>
