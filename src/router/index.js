@@ -1,33 +1,38 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+// Home
 import Home from "../views/Home.vue";
 
+// Cars
 import Cars from "../views/Cars.vue";
 import NewCar from "../views/NewCar.vue";
 import CarDetail from "../views/CarDetail.vue";
-import CarDelete from "../views/CarDelete.vue";
 import EditCar from "../views/EditCar.vue";
+import CarDelete from "../views/CarDelete.vue";
 
+// Car Brands
 import CarBrands from "../views/CarBrands.vue";
 import NewCarBrand from "../views/NewCarBrand.vue";
 import CarBrandDetail from "../views/CarBrandDetail.vue";
-import CarBrandDelete from "../views/CarBrandDelete.vue";
 import EditCarBrand from "../views/EditCarBrand.vue";
+import CarBrandDelete from "../views/CarBrandDelete.vue";
 
+// Car Types
 import CarTypes from "../views/CarTypes.vue";
 import NewCarType from "../views/NewCarType.vue";
 import CarTypeDetail from "../views/CarTypeDetail.vue";
-import CarTypeDelete from "../views/CarTypeDelete.vue";
 import EditCarType from "../views/EditCarType.vue";
-
+import CarTypeDelete from "../views/CarTypeDelete.vue";
 
 const routes = [
+  // Home Route
   {
     path: "/",
     name: "Home",
     component: Home,
   },
 
+  // Cars Routes
   {
     path: "/cars/:page?",
     name: "Cars",
@@ -54,6 +59,7 @@ const routes = [
     component: CarDelete,
   },
 
+  // Car Brands Routes
   {
     path: "/car-brands/:page?",
     name: "CarBrands",
@@ -80,6 +86,7 @@ const routes = [
     component: CarBrandDelete,
   },
 
+  // Car Types Routes
   {
     path: "/car-types/:page?",
     name: "CarTypes",
